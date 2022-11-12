@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/util
+                http://www.springframework.org/schema/util/spring-util.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="bus" class="org.example.entity.Transport" init-method="setBusCapacity">
+        <constructor-arg value="Bus"/>
+    </bean>
+    <bean id="taxi" class="org.example.entity.Transport" init-method="setTaxiCapacity">
+        <constructor-arg value="Taxi"/>
+    </bean>
+    <bean id="subway" class="org.example.entity.Transport" init-method="setSubwayCapacity">
+        <constructor-arg value="Subway"/>
+    </bean>
+
+    <util:map id="transportMap" scope="singleton" map-class="java.util.HashMap"
+              value-type="org.example.entity.Transport"
+              key-type="java.lang.Integer">
+        <entry value-ref="bus" key="17"/>
+        <entry value-ref="taxi" key="0"/>
+        <entry value-ref="subway" key="3"/>
+    </util:map>
+
+
+</beans>
